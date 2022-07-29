@@ -1,7 +1,8 @@
-import Index from "@/views/Index"
+import MainContent from "@/views/MainContent";
 
 import {createRouter, createWebHistory} from "vue-router";
 
+const Index = () => import('../views/Index')
 /*
 创建路由表
  */
@@ -10,6 +11,23 @@ const routes = [
         path:"/",
         name:'Index',
         component:Index,
+        children:[
+            {
+                path:'mainContent',
+                name:'MainContent',
+                meta:{
+                    name:'MainContent'
+                },
+                component:MainContent,
+                redirect:{
+                    path:'/mainContent'
+                },
+                children:[
+
+                ]
+
+            }
+        ]
     }
 ]
 
