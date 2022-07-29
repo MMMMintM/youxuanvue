@@ -1,12 +1,17 @@
 <template>
   <div class="index">
-
+    <Header></Header><!--zt-->
   </div>
 </template>
 
 <script>
+
+import Header from "@/views/Header";
 export default {
-  name: "IndexPage"
+  name: "IndexPage",
+  components:{
+    Header
+  }
 }
 </script>
 

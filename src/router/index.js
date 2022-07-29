@@ -1,3 +1,4 @@
+import Index from "@/views/Index"
 
 import {createRouter, createWebHistory} from "vue-router";
 
@@ -5,7 +6,11 @@ import {createRouter, createWebHistory} from "vue-router";
 创建路由表
  */
 const routes = [
-
+    {
+        path:"/",
+        name:'Index',
+        component:Index,
+    }
 ]
 
 /*
