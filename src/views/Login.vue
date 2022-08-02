@@ -25,7 +25,6 @@ export default {
           .then(res => {
             // vuex（状态管理）
             sessionStorage.setItem("token", res.token);
-            console.log(res);
             this.$router.push("/index");
           }).catch(err => {
         console.log(err);
