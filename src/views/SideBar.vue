@@ -2,50 +2,17 @@
 <template>
   <div>
     <div class="sideBar">
-      <ul class="menu">
+      <ul class="menu" v-for="(menu,idx) in navTree" :key="menu.id">
         <li>
-          <router-link to="" @click="showMenu(0)"><i class="fa fa-home"></i>首页管理</router-link>
-          <ul class="submenu" v-show="openMenus[0].isShow">
-            <li>
-              <router-link to="">轮播图管理</router-link>
-            </li>
-            <li>
-              <router-link to="">商品推荐</router-link>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <router-link to="" @click="showMenu(1)"><i class="fa fa-user"></i>用户管理</router-link>
-          <ul class="submenu" v-show="openMenus[1].isShow">
-            <li>
-              <router-link to="">用户列表</router-link>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <router-link to="" @click="showMenu(2)"><i class="fa fa-user-o"></i>商品管理</router-link>
-          <ul class="submenu" v-show="openMenus[2].isShow">
-            <li>
-              <router-link to="">商品列表</router-link>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <router-link to="" @click="showMenu(3)"><i class="fa fa-bus"></i>订单管理</router-link>
-          <ul class="submenu" v-show="openMenus[3].isShow">
-            <li>
-              <router-link to="">历史订单</router-link>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <router-link to="" @click="showMenu(4)"><i class="fa fa-bus"></i>角色管理</router-link>
-          <ul class="submenu" v-show="openMenus[4].isShow">
-            <li>
-              <router-link to="">角色列表</router-link>
-            </li>
-            <li>
-              <router-link to="">权限列表</router-link>
+          <router-link to="" @click="showMenu(idx)">
+            <i class={{menu.icon}}></i>
+            {{menu.name}}
+          </router-link>
+          <ul class="submenu" v-for="(childrenMenu) in childrenTree" :key="childrenMenu.id">
+            <li v-if="childrenMenu.parentId == menu.id" v-show="true">
+              <router-link :to="childrenMenu.url">
+                {{childrenMenu.name}}
+              </router-link>
             </li>
           </ul>
         </li>
@@ -55,6 +22,7 @@
 </template>
 
 <script>
+
 export default {
   name: "SideBar",
   data(){
@@ -63,7 +31,14 @@ export default {
     }
   },
   computed:{
-
+    navTree(){
+      let tree = this.$store.getters.getNavTree;
+      return tree
+    },
+    childrenTree(){
+      let childrenTree = this.$store.getters.getChildrenTree;
+      return childrenTree
+    }
   },
   methods:{
     showMenu(idx){
@@ -72,12 +47,14 @@ export default {
         if(i != idx)
           this.openMenus[i].isShow = false
       }
+      console.log(idx)
       this.openMenus[idx].isShow = !this.openMenus[idx].isShow
     }
   },
-  created() {
-    for(var i = 0;i < 5;i++){
+  mounted() {
+    for(let i = 0;i < this.navTree.length;i++){
       this.openMenus.unshift({isShow:false})
+      console.log(this.openMenus[i].isShow)
     }
   }
 }
@@ -138,7 +115,6 @@ export default {
   }
   .submenu > li:before {
     content: "";
-    /*display: block;*/
     width: 10px;
     position: absolute;
     z-index: 1;
