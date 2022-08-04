@@ -2,6 +2,7 @@ import Login from "@/views/Login";
 import MainContent from "@/views/MainContent";
 import {createRouter, createWebHistory} from "vue-router";
 import Test from "@/views/Test";
+import Main from "@/views/Main";
 
 const Index = () => import('../views/Index')
 /*
@@ -31,6 +32,14 @@ const routes = [
                 component: MainContent,
                 redirect: {path: '/index/mainContent/main'},
                 children: [
+                    {
+                        path: 'main',
+                        name: 'Main',
+                        meta: {
+                            name: 'main'
+                        },
+                        component: Main
+                    },
                     {
                         path: 'loopimg',
                         name:'Loopimg',
