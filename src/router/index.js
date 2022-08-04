@@ -1,10 +1,7 @@
 import Login from "@/views/Login";
-//import Index from "@/views/Index";
-
-import Main from "@/views/Main";
-
 import MainContent from "@/views/MainContent";
 import {createRouter, createWebHistory} from "vue-router";
+import Test from "@/views/Test";
 
 const Index = () => import('../views/Index')
 /*
@@ -35,13 +32,62 @@ const routes = [
                 redirect: {path: '/index/mainContent/main'},
                 children: [
                     {
-                        path: 'main',
-                        name: 'Main',
-                        meta: {
-                            name: 'main'
-                        },
-                        component: Main
+                        path: 'loopimg',
+                        name:'Loopimg',
+                        meta:{
+                            name:'loopimg'
+                        }
                     },
+                    {
+                        path: 'recommand',
+                        name:'Recommand',
+                        meta:{
+                            name:'recommand'
+                        }
+                    },
+                    {
+                        path: 'user',
+                        name:'User',
+                        meta:{
+                            name:'user'
+                        }
+                    },
+                    {
+                        path: 'item',
+                        name:'Item',
+                        meta:{
+                            name:'item'
+                        }
+                    },
+                    {
+                        path: 'order',
+                        name:'Order',
+                        meta:{
+                            name:'order'
+                        }
+                    },
+                    {
+                        path: 'role',
+                        name:'Role',
+                        meta:{
+                            name:'role'
+                        }
+                    },
+                    {
+                        path: 'permission',
+                        name:'Permission',
+                        meta:{
+                            name:'permission'
+                        }
+                    },
+                    {
+                        path: 'test',
+                        name:'Test',
+                        meta:{
+                            name:'test'
+                        },
+                        component: Test
+                    }
                 ]
             }
         ]
