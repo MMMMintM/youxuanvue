@@ -25,14 +25,19 @@ export default {
           .then(res => {
             sessionStorage.setItem("token",res.token)
             console.log("登录后服务器返回的数据:",res.token)
+            this.$api.dynamicRouter.findNavRouter("dynamicRouter/findNavRouter",{'userName':this.loginForm.username})
+              .then(res => {
+                console.log("动态路由表",res)
+                this.$store.commit('setNavRouter',res)
+              })
             this.$api.menu.findNavTree("menu/findNavTree",{'userName':this.loginForm.username})
               .then(res => {
-                console.log(res)
+                console.log("菜单",res)
                 this.$store.commit('setNavTree',res)
               })
             this.$api.menu.findChildren("menu/findChildrenTree",{'userName':this.loginForm.username})
               .then(res =>{
-                console.log(res)
+                console.log("子菜单",res)
                 this.$store.commit('setChildrenTree',res)
               })
             this.$router.push("/index");

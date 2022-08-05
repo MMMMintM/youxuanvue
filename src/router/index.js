@@ -1,8 +1,7 @@
 import Login from "@/views/Login";
 import MainContent from "@/views/MainContent";
 import {createRouter, createWebHistory} from "vue-router";
-import Test from "@/views/Test";
-import Main from "@/views/Main";
+import routerTree from "@/router/getDynamicRouter";
 
 const Index = () => import('../views/Index')
 /*
@@ -31,79 +30,11 @@ const routes = [
                 },
                 component: MainContent,
                 redirect: {path: '/index/mainContent/main'},
-                children: [
-                    {
-                        path: 'main',
-                        name: 'Main',
-                        meta: {
-                            name: 'main'
-                        },
-                        component: Main
-                    },
-                    {
-                        path: 'loopimg',
-                        name:'Loopimg',
-                        meta:{
-                            name:'loopimg'
-                        }
-                    },
-                    {
-                        path: 'recommand',
-                        name:'Recommand',
-                        meta:{
-                            name:'recommand'
-                        }
-                    },
-                    {
-                        path: 'user',
-                        name:'User',
-                        meta:{
-                            name:'user'
-                        }
-                    },
-                    {
-                        path: 'item',
-                        name:'Item',
-                        meta:{
-                            name:'item'
-                        }
-                    },
-                    {
-                        path: 'order',
-                        name:'Order',
-                        meta:{
-                            name:'order'
-                        }
-                    },
-                    {
-                        path: 'role',
-                        name:'Role',
-                        meta:{
-                            name:'role'
-                        }
-                    },
-                    {
-                        path: 'permission',
-                        name:'Permission',
-                        meta:{
-                            name:'permission'
-                        }
-                    },
-                    {
-                        path: 'test',
-                        name:'Test',
-                        meta:{
-                            name:'test'
-                        },
-                        component: Test
-                    }
-                ]
+                children: routerTree
             }
         ]
-
     }
 ]
-
 /*
 创建路由实例
  */
@@ -112,5 +43,6 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 })
+
 
 export {router}
