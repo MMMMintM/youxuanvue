@@ -4,12 +4,12 @@
     <div class="sideBar">
       <ul class="menu" v-for="(menu,idx) in navTree" :key="menu.id">
         <li>
-          <router-link to="" @click="showMenu(idx)">
+          <router-link to="" @click="showMenu(idx,navTree)">
             <i class={{menu.icon}}></i>
             {{menu.name}}
           </router-link>
           <ul class="submenu" v-for="(childrenMenu) in childrenTree" :key="childrenMenu.id">
-            <li v-if="childrenMenu.parentId == menu.id" v-show="true">
+            <li v-if="childrenMenu.parentId == menu.id" v-show="menu.show">
               <router-link :to="childrenMenu.url">
                 {{childrenMenu.name}}
               </router-link>
@@ -27,7 +27,6 @@ export default {
   name: "SideBar",
   data(){
     return{
-      openMenus:[]
     }
   },
   computed:{
@@ -41,20 +40,12 @@ export default {
     }
   },
   methods:{
-    showMenu(idx){
-      for(var i = 0;i < this.openMenus.length;i ++)
-      {
+    showMenu(idx,navTree) {
+      for(let i = 0;i < navTree.length;i ++){
         if(i != idx)
-          this.openMenus[i].isShow = false
+          navTree[i].show = false
       }
-      console.log(idx)
-      this.openMenus[idx].isShow = !this.openMenus[idx].isShow
-    }
-  },
-  mounted() {
-    for(let i = 0;i < this.navTree.length;i++){
-      this.openMenus.unshift({isShow:false})
-      console.log(this.openMenus[i].isShow)
+      navTree[idx].show = true
     }
   }
 }
