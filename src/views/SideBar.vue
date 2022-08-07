@@ -5,15 +5,16 @@
       <ul class="menu" v-for="(menu,idx) in navTree" :key="menu.id">
         <li>
           <router-link to="" @click="showMenu(idx,navTree)">
-            <i class={{menu.icon}}></i>
+            <i :class="menu.icon"></i>
             {{menu.name}}
           </router-link>
           <ul class="submenu" v-for="(childrenMenu) in childrenTree" :key="childrenMenu.id">
-            <li v-if="childrenMenu.parentId == menu.id" v-show="menu.show">
-              <router-link :to="childrenMenu.url">
-                {{childrenMenu.name}}
-              </router-link>
-            </li>
+              <li v-if="childrenMenu.parentId == menu.id" v-show="menu.show">
+                <router-link :to="childrenMenu.url">
+                  &nbsp;
+                  {{childrenMenu.name}}
+                </router-link>
+              </li>
           </ul>
         </li>
       </ul>
@@ -45,7 +46,7 @@ export default {
         if(i != idx)
           navTree[i].show = false
       }
-      navTree[idx].show = true
+      navTree[idx].show = !navTree[idx].show
     }
   }
 }
