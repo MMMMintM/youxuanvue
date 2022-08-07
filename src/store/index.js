@@ -7,7 +7,8 @@ const store = createStore({
         // 如果没有模块化，很多模块的属性，都在这里声明
         navRouter: [],
         navTree: [],
-        childrenTree:[]
+        childrenTree:[],
+        userName:[]
     },
     // 同步操作赋值
     mutations: {
@@ -23,6 +24,10 @@ const store = createStore({
         setChildrenTree(state,childrenTree){
             state.childrenTree = childrenTree
             console.log("给ChildrenTree赋值", childrenTree)
+        },
+        setUsername(state,userName){
+            state.userName = userName
+            console.log("获得username：",userName)
         }
     },
     actions: {
@@ -39,6 +44,9 @@ const store = createStore({
         },
         getChildrenTree(state){
             return state.childrenTree
+        },
+        getUserName(state){
+            return state.userName
         }
     },
     plugins: [vuexAlong({
@@ -46,7 +54,8 @@ const store = createStore({
         local: {
             navRouter:["navRouter"],
             navTree:["navTree"],
-            childrenTree:["childrenTree"]
+            childrenTree:["childrenTree"],
+            userName:["userName"]
         }
     })]
 })
