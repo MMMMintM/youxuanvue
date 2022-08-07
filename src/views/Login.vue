@@ -25,6 +25,7 @@ export default {
           .then(res => {
             sessionStorage.setItem("token",res.token)
             console.log("登录后服务器返回的数据:",res.token)
+            this.$store.commit("setUsername",this.loginForm.username)
             this.$api.dynamicRouter.findNavRouter("dynamicRouter/findNavRouter",{'userName':this.loginForm.username})
               .then(res => {
                 console.log("动态路由表",res)

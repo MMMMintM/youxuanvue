@@ -14,7 +14,7 @@ export default {
 <style scoped>
   .main{
     width: 85%;
-    height: 90%;
+    height: 85%;
     background-color: aliceblue;
     float: left;
   }
